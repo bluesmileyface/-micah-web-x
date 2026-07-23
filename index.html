@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>MICAH WEB X</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
+min-height:2000px;
+
+background:linear-gradient(120deg,#006eff,#8a2be2,#00ffff);
+background-size:400% 400%;
+animation:bg 10s infinite;
+}
+
+@keyframes bg{
+50%{
+background-position:100%;
+}
+}
+
+
+.hero{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+}
+
+
+#logo{
+
+font-size:70px;
+cursor:pointer;
+text-shadow:0 0 30px cyan;
+
+}
+
+
+#logo span{
+
+display:inline-block;
+transition:1s;
+
+}
+
+
+#logo.break span:nth-child(odd){
+
+transform:translate(-100px,-100px) rotate(180deg);
+opacity:0;
+
+}
+
+
+#logo.break span:nth-child(even){
+
+transform:translate(100px,100px) rotate(-180deg);
+opacity:0;
+
+}
+
+
+
+.search{
+
+background:#ffffff33;
+padding:20px;
+border-radius:40px;
+
+}
+
+
+input{
+
+padding:15px;
+border-radius:30px;
+border:0;
+
+}
+
+
+button{
+
+padding:15px;
+border-radius:30px;
+border:0;
+background:#00ffff;
+cursor:pointer;
+
+}
+
+
+.robot{
+
+font-size:80px;
+animation:float 2s infinite;
+
+}
+
+
+@keyframes float{
+
+50%{
+transform:translateY(-15px);
+}
+
+}
+
+
+
+.card{
+
+max-width:600px;
+margin:100px auto;
+padding:30px;
+
+background:#ffffff22;
+
+border-radius:30px;
+
+backdrop-filter:blur(15px);
+
+opacity:0;
+
+transform:translateY(80px);
+
+transition:1s;
+
+}
+
+
+.card.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+
+footer{
+
+padding:50px;
+
+background:#0005;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="hero">
+
+
+<h1 id="logo">
+
+<span>M</span>
+<span>I</span>
+<span>C</span>
+<span>A</span>
+<span>H</span>
+
+<br>
+
+<span>W</span>
+<span>E</span>
+<span>B</span>
+
+</h1>
+
+
+
+<p>
+🌐 The futuristic web
+</p>
+
+
+
+<div class="search">
+
+
+<input id="search" placeholder="Search DuckDuckGo">
+
+
+<button onclick="searchWeb()">
+🔎 Search
+</button>
+
+
+<button onclick="surprise()">
+✨ Surprise
+</button>
+
+
+</div>
+
+
+
+<div class="robot">
+🤖
+</div>
+
+
+<p>
+Creator is online
+</p>
+
+
+</section>
+
+
+
+<div class="card">
+
+<h2>
+📖 Scripture
+</h2>
+
+<p id="verse">
+Loading...
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+⭐ Amazing Website
+</h2>
+
+<p>
+This website is so good. A futuristic experience made by Micah.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+🛠️ Starter Guide
+</h2>
+
+<p>
+Create and explore the future of the web.
+</p>
+
+</div>
+
+
+
+<footer>
+
+<h2>
+🚀 Made by Micah • MICAH WEB X
+</h2>
+
+<p>
+👀 Come look at the future of the web
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+let logo=document.getElementById("logo");
+
+
+logo.onclick=()=>{
+
+logo.classList.toggle("break");
+
+};
+
+
+
+function searchWeb(){
+
+let q=document.getElementById("search").value;
+
+
+if(q){
+
+window.open(
+"https://duckduckgo.com/?q="+encodeURIComponent(q),
+"_blank"
+);
+
+}
+
+}
+
+
+
+function surprise(){
+
+let stuff=[
+
+"🚀 Welcome to MICAH WEB X",
+
+"🤖 Robot activated",
+
+"🧊 Ice mode",
+
+"⭐ This website is amazing"
+
+];
+
+
+alert(
+stuff[Math.floor(Math.random()*stuff.length)]
+);
+
+}
+
+
+
+let verses=[
+
+"John 3:16 - For God so loved the world.",
+
+"Philippians 4:13 - I can do all things through Christ.",
+
+"Psalm 23:1 - The Lord is my shepherd."
+
+];
+
+
+document.getElementById("verse").innerHTML=
+verses[Math.floor(Math.random()*verses.length)];
+
+
+
+
+let cards=document.querySelectorAll(".card");
+
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+if(card.getBoundingClientRect().top < innerHeight-100){
+
+card.classList.add("show");
+
+}
+
+});
+
+});
+
+
+</script>
+
+
+</body>
+</html>

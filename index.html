@@ -1,172 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>MICAH WEB X</title>
 
 <style>
 
+:root{
+--neon:#009dff;
+}
+
 body{
 margin:0;
-font-family:Arial,sans-serif;
+font-family:Arial;
 color:white;
 text-align:center;
 min-height:2000px;
-
-background:linear-gradient(120deg,#006eff,#8a2be2,#00ffff);
-background-size:400% 400%;
-animation:bg 10s infinite;
+background:#009dff;
+transition:1s;
+overflow-x:hidden;
 }
 
-@keyframes bg{
-50%{
-background-position:100%;
+
+#theme{
+position:fixed;
+inset:0;
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
 }
+
+
+button,input{
+padding:14px;
+border-radius:25px;
+border:0;
+margin:5px;
 }
 
 
 .hero{
-
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-
 }
 
 
 #logo{
-
 font-size:70px;
 cursor:pointer;
-text-shadow:0 0 30px cyan;
-
+text-shadow:
+0 0 10px var(--neon),
+0 0 30px var(--neon),
+0 0 60px var(--neon);
 }
 
 
 #logo span{
-
 display:inline-block;
-transition:1s;
-
+transition:.8s;
 }
 
 
-#logo.break span:nth-child(odd){
-
+.break span:nth-child(odd){
 transform:translate(-100px,-100px) rotate(180deg);
 opacity:0;
-
 }
 
 
-#logo.break span:nth-child(even){
-
+.break span:nth-child(even){
 transform:translate(100px,100px) rotate(-180deg);
 opacity:0;
-
 }
-
 
 
 .search{
-
 background:#ffffff33;
 padding:20px;
 border-radius:40px;
-
 }
 
 
-input{
-
-padding:15px;
+#duck{
+display:none;
+width:90%;
+height:500px;
+margin:30px auto;
 border-radius:30px;
+overflow:hidden;
+background:white;
+}
+
+
+#duck iframe{
+width:100%;
+height:100%;
 border:0;
-
 }
 
 
-button{
-
-padding:15px;
-border-radius:30px;
-border:0;
-background:#00ffff;
-cursor:pointer;
-
+#history{
+background:#ffffff22;
+margin:20px;
+padding:20px;
+border-radius:20px;
 }
-
-
-.robot{
-
-font-size:80px;
-animation:float 2s infinite;
-
-}
-
-
-@keyframes float{
-
-50%{
-transform:translateY(-15px);
-}
-
-}
-
 
 
 .card{
-
-max-width:600px;
 margin:100px auto;
+max-width:600px;
 padding:30px;
-
-background:#ffffff22;
-
+background:#ffffff33;
 border-radius:30px;
-
-backdrop-filter:blur(15px);
-
 opacity:0;
-
-transform:translateY(80px);
-
-transition:1s;
-
+transform:translateY(60px);
+transition:.8s;
 }
 
 
 .card.show{
-
 opacity:1;
-
 transform:translateY(0);
-
 }
 
 
-
-footer{
-
-padding:50px;
-
-background:#0005;
-
+.card.hide{
+opacity:0;
+transform:translateY(-60px);
 }
 
+
+.robot{
+font-size:80px;
+animation:float 2s infinite;
+}
+
+
+@keyframes float{
+50%{
+transform:translateY(-15px);
+}
+}
+
+
+.fall{
+position:fixed;
+top:-50px;
+font-size:30px;
+animation:drop 5s linear;
+}
+
+
+@keyframes drop{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
 
 </style>
-
 </head>
 
 
 <body>
+
+
+<div id="theme">
+
+<h1>🎨 Choose Theme</h1>
+
+<button onclick="setTheme('#009dff')">💙 Blue</button>
+<button onclick="setTheme('#ff2d55')">❤️ Red</button>
+<button onclick="setTheme('#ff8c00')">🧡 Orange</button>
+<button onclick="setTheme('#ffd400')">💛 Yellow</button>
+<button onclick="setTheme('#00c853')">💚 Green</button>
+<button onclick="setTheme('#7b2cff')">💜 Purple</button>
+<button onclick="setTheme('#ff4fc3')">🩷 Pink</button>
+
+</div>
+
 
 
 <section class="hero">
@@ -174,71 +190,59 @@ background:#0005;
 
 <h1 id="logo">
 
-<span>M</span>
-<span>I</span>
-<span>C</span>
-<span>A</span>
-<span>H</span>
-
+<span>M</span><span>I</span><span>C</span><span>A</span><span>H</span>
 <br>
-
-<span>W</span>
-<span>E</span>
-<span>B</span>
+<span>W</span><span>E</span><span>B</span>
 
 </h1>
 
 
-
-<p>
-🌐 The futuristic web
-</p>
-
+<p>🌐 The futuristic web</p>
 
 
 <div class="search">
 
-
 <input id="search" placeholder="Search DuckDuckGo">
 
+<button onclick="search()">🔎</button>
 
-<button onclick="searchWeb()">
-🔎 Search
-</button>
+<button onclick="openDuck()">🌐</button>
 
-
-<button onclick="surprise()">
-✨ Surprise
-</button>
-
+<button onclick="surprise()">✨</button>
 
 </div>
 
 
-
-<div class="robot">
-🤖
-</div>
+<button onclick="openTheme()">🎨 Change Color</button>
 
 
-<p>
-Creator is online
-</p>
+<div class="robot">🤖</div>
+
+
+<p>Creator is online</p>
 
 
 </section>
 
 
 
+<div id="duck">
+
+<iframe id="duckFrame"></iframe>
+
+</div>
+
+
+
+<div id="history"></div>
+
+
+
 <div class="card">
 
-<h2>
-📖 Scripture
-</h2>
+<h2>📖 Scripture</h2>
 
-<p id="verse">
-Loading...
-</p>
+<p>John 3:16 - For God so loved the world.</p>
 
 </div>
 
@@ -246,13 +250,9 @@ Loading...
 
 <div class="card">
 
-<h2>
-⭐ Amazing Website
-</h2>
+<h2>⭐ Amazing Website</h2>
 
-<p>
-This website is so good. A futuristic experience made by Micah.
-</p>
+<p>A futuristic experience made by Micah.</p>
 
 </div>
 
@@ -260,59 +260,107 @@ This website is so good. A futuristic experience made by Micah.
 
 <div class="card">
 
-<h2>
-🛠️ Starter Guide
-</h2>
+<h2>🛠️ Starter Guide</h2>
 
-<p>
-Create and explore the future of the web.
-</p>
+<p>Create and explore the future of the web.</p>
 
 </div>
-
-
-
-<footer>
-
-<h2>
-🚀 Made by Micah • MICAH WEB X
-</h2>
-
-<p>
-👀 Come look at the future of the web
-</p>
-
-</footer>
 
 
 
 <script>
 
 
-let logo=document.getElementById("logo");
-
-
-logo.onclick=()=>{
-
-logo.classList.toggle("break");
-
-};
+let history =
+JSON.parse(localStorage.getItem("micahHistory")) || [];
 
 
 
-function searchWeb(){
+function setTheme(color){
 
-let q=document.getElementById("search").value;
+document.body.style.background=color;
 
+document.documentElement.style.setProperty("--neon",color);
 
-if(q){
+localStorage.setItem("theme",color);
 
-window.open(
-"https://duckduckgo.com/?q="+encodeURIComponent(q),
-"_blank"
-);
+document.getElementById("theme").style.display="none";
 
 }
+
+
+function openTheme(){
+
+document.getElementById("theme").style.display="flex";
+
+}
+
+
+
+let saved=localStorage.getItem("theme");
+
+if(saved){
+
+setTheme(saved);
+
+}
+
+
+
+function search(){
+
+let q=document.getElementById("search").value.trim();
+
+
+if(!q)return;
+
+
+history.unshift(q);
+
+history=history.slice(0,8);
+
+
+localStorage.setItem(
+"micahHistory",
+JSON.stringify(history)
+);
+
+
+showHistory();
+
+
+document.getElementById("duck").style.display="block";
+
+document.getElementById("duckFrame").src=
+"https://duckduckgo.com/?q="+encodeURIComponent(q);
+
+}
+
+
+
+function openDuck(){
+
+document.getElementById("duck").style.display="block";
+
+document.getElementById("duckFrame").src=
+"https://duckduckgo.com";
+
+}
+
+
+
+function showHistory(){
+
+let h=document.getElementById("history");
+
+h.innerHTML="🕘 Search History";
+
+
+history.forEach(x=>{
+
+h.innerHTML+="<p>🔎 "+x+"</p>";
+
+});
 
 }
 
@@ -320,60 +368,68 @@ window.open(
 
 function surprise(){
 
-let stuff=[
-
-"🚀 Welcome to MICAH WEB X",
-
-"🤖 Robot activated",
-
-"🧊 Ice mode",
-
-"⭐ This website is amazing"
-
-];
-
-
-alert(
-stuff[Math.floor(Math.random()*stuff.length)]
-);
+alert("🚀 Welcome to MICAH WEB X");
 
 }
 
 
 
-let verses=[
+document.getElementById("logo").onclick=function(){
 
-"John 3:16 - For God so loved the world.",
+this.classList.toggle("break");
 
-"Philippians 4:13 - I can do all things through Christ.",
+};
 
-"Psalm 23:1 - The Lord is my shepherd."
-
-];
-
-
-document.getElementById("verse").innerHTML=
-verses[Math.floor(Math.random()*verses.length)];
-
-
-
-
-let cards=document.querySelectorAll(".card");
 
 
 window.addEventListener("scroll",()=>{
 
-cards.forEach(card=>{
+document.querySelectorAll(".card").forEach(card=>{
 
-if(card.getBoundingClientRect().top < innerHeight-100){
+let box=card.getBoundingClientRect();
+
+
+if(box.top<innerHeight-100 && box.bottom>0){
 
 card.classList.add("show");
+
+card.classList.remove("hide");
+
+}
+
+else if(box.bottom<0){
+
+card.classList.add("hide");
 
 }
 
 });
 
 });
+
+
+
+setInterval(()=>{
+
+let e=document.createElement("div");
+
+e.className="fall";
+
+e.innerHTML=["✨","🚀","💎","🧊"][Math.floor(Math.random()*4)];
+
+e.style.left=Math.random()*100+"%";
+
+document.body.appendChild(e);
+
+
+setTimeout(()=>e.remove(),5000);
+
+
+},900);
+
+
+
+showHistory();
 
 
 </script>
